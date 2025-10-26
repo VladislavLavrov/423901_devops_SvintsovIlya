@@ -13,47 +13,47 @@
         <div class="row mb-3">
             <div class="col">
                 <label for="C" class="form-label">C (%)</label>
-                <input type="number" step="0.01" name="C" class="form-control" required>
+                <input type="number" step="0.01" name="C" class="form-control" required value="{{ initial_data.C|default:'' }}">
             </div>
             <div class="col">
                 <label for="Mn" class="form-label">Mn (%)</label>
-                <input type="number" step="0.01" name="Mn" class="form-control" required>
+                <input type="number" step="0.01" name="Mn" class="form-control" required value="{{ initial_data.Mn|default:'' }}">
             </div>
         </div>
         <div class="row mb-3">
             <div class="col">
                 <label for="Si" class="form-label">Si (%)</label>
-                <input type="number" step="0.01" name="Si" class="form-control" required>
+                <input type="number" step="0.01" name="Si" class="form-control" required value="{{ initial_data.Si|default:'' }}">
             </div>
             <div class="col">
                 <label for="P" class="form-label">P (%)</label>
-                <input type="number" step="0.01" name="P" class="form-control" required>
+                <input type="number" step="0.01" name="P" class="form-control" required value="{{ initial_data.P|default:'' }}">
             </div>
         </div>
         <div class="row mb-3">
             <div class="col">
                 <label for="S" class="form-label">S (%)</label>
-                <input type="number" step="0.01" name="S" class="form-control" required>
+                <input type="number" step="0.01" name="S" class="form-control" required value="{{ initial_data.S|default:'' }}">
             </div>
             <div class="col">
                 <label for="Ni" class="form-label">Ni (%)</label>
-                <input type="number" step="0.01" name="Ni" class="form-control">
+                <input type="number" step="0.01" name="Ni" class="form-control" value="{{ initial_data.Ni|default:'' }}">
             </div>
         </div>
         <div class="row mb-3">
             <div class="col">
                 <label for="Cr" class="form-label">Cr (%)</label>
-                <input type="number" step="0.01" name="Cr" class="form-control">
+                <input type="number" step="0.01" name="Cr" class="form-control" value="{{ initial_data.Cr|default:'' }}">
             </div>
             <div class="col">
                 <label for="Mo" class="form-label">Mo (%)</label>
-                <input type="number" step="0.01" name="Mo" class="form-control">
+                <input type="number" step="0.01" name="Mo" class="form-control" value="{{ initial_data.Mo|default:'' }}">
             </div>
         </div>
         <div class="row mb-4">
             <div class="col">
                 <label for="Ti" class="form-label">Ti (%)</label>
-                <input type="number" step="0.01" name="Ti" class="form-control">
+                <input type="number" step="0.01" name="Ti" class="form-control" value="{{ initial_data.Ti|default:'' }}">
             </div>
         </div>
         <div class="text-center">

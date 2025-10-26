@@ -9,9 +9,15 @@
 <div class="container mt-5">
     <h1 class="text-center mb-4">Прогноз свойств стали</h1>
     <p class="text-center">Выберите тип стали и переходите к прогнозу механических свойств по химическому составу.</p>
+
     <div class="d-flex justify-content-center gap-3 mt-4">
         <a href="{% url 'predict' 'carbon' %}" class="btn btn-primary btn-lg">Углеродистая сталь</a>
         <a href="{% url 'predict' 'stainless' %}" class="btn btn-success btn-lg">Нержавеющая сталь</a>
+    </div>
+
+    <div class="d-flex justify-content-center gap-3 mt-3">
+        <a href="{% url 'history' 'carbon' %}" class="btn btn-outline-primary btn-lg">История углеродистой стали</a>
+        <a href="{% url 'history' 'stainless' %}" class="btn btn-outline-success btn-lg">История нержавеющей стали</a>
     </div>
 </div>
 </body>

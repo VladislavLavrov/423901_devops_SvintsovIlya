@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>История прогнозов для {{ steel_name }}</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+<div class="container mt-5">
+    <h2 class="text-center mb-4">История прогнозов для {{ steel_name }}</h2>
+
+    {% if predictions %}
+        <table class="table table-bordered table-striped table-hover">
+            <thead class="table-dark">
+                <tr>
+                    <th>Дата</th>
+                    <th>C</th>
+                    <th>Mn</th>
+                    <th>Si</th>
+                    <th>P</th>
+                    <th>S</th>
+                    <th>Ni</th>
+                    <th>Cr</th>
+                    <th>Mo</th>
+                    <th>Ti</th>
+                    <th>UTS</th>
+                    <th>YS</th>
+                    <th>Elongation</th>
+                    <th>Hardness</th>
+                    <th>Reduction</th>
+                    <th>Действия</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for prediction in predictions %}
+                <tr>
+                    <td>{{ prediction.created_at|date:"d.m.Y H:i" }}</td>
+                    <td>{{ prediction.C }}</td>
+                    <td>{{ prediction.Mn }}</td>
+                    <td>{{ prediction.Si }}</td>
+                    <td>{{ prediction.P }}</td>
+                    <td>{{ prediction.S }}</td>
+                    <td>{{ prediction.Ni }}</td>
+                    <td>{{ prediction.Cr }}</td>
+                    <td>{{ prediction.Mo }}</td>
+                    <td>{{ prediction.Ti }}</td>
+                    <td>{{ prediction.UTS }}</td>
+                    <td>{{ prediction.YS }}</td>
+                    <td>{{ prediction.Elongation }}</td>
+                    <td>{{ prediction.Hardness }}</td>
+                    <td>{{ prediction.Reduction }}</td>
+                    <td>
+                        <a href="{% url 'predict' steel_type %}?id={{ prediction.id }}" class="btn btn-sm btn-primary">Использовать</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <p class="text-center mt-4">История прогнозов пуста.</p>
+    {% endif %}
+
+    <div class="text-center mt-4">
+        <a href="{% url 'index' %}" class="btn btn-secondary btn-lg">Главная</a>
+        <a href="{% url 'predict' steel_type %}" class="btn btn-primary btn-lg">Новый прогноз</a>
+    </div>
+</div>
+</body>
+</html>
