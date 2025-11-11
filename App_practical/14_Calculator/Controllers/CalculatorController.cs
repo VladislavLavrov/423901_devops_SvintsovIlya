@@ -1,33 +1,30 @@
 ﻿using Calculator.Data;
-using CalcWeb.Models;
-using Microsoft.AspNetCore.Components.Forms;
+using Calculator.Models;
 using Microsoft.AspNetCore.Mvc;
+
 namespace Calculator.Controllers
 {
-    public enum Operation
-    {
-        Add, Subtract, Multiply,
-        Divide
-    }
     public class CalculatorController : Controller
     {
-        private CalculatorContext _context;
-        public CalculatorController(CalculatorContext
-       context)
+        private readonly CalculatorContext _context;
+
+        public CalculatorController(CalculatorContext context)
         {
             _context = context;
         }
+
         [HttpGet]
         public IActionResult Index()
         {
             return View();
         }
+
         [HttpPost]
         [ValidateAntiForgeryToken]
-
-public IActionResult Calculate(double num1, double num2, Operation operation)
+        public IActionResult Calculate(double num1, double num2, Operation operation)
         {
             double result = 0;
+
             switch (operation)
             {
                 case Operation.Add:
@@ -43,17 +40,20 @@ public IActionResult Calculate(double num1, double num2, Operation operation)
                     result = num1 / num2;
                     break;
             }
+
             ViewBag.Result = result;
-            DataInputVariant dataInputVariant = new
-           DataInputVariant();
-            dataInputVariant.Operand_1 = num1.ToString();
-            dataInputVariant.Operand_2 = num2.ToString();
-            dataInputVariant.Type_operation = operation.
-           ToString();
-            dataInputVariant.Result = result.ToString();
+
+            DataInputVariant dataInputVariant = new DataInputVariant
+            {
+                Operand_1 = num1,
+                Operand_2 = num2,
+                Type_operation = operation,
+                Result = result.ToString()
+            };
 
             _context.DataInputVariants.Add(dataInputVariant);
             _context.SaveChanges();
+
             return View("Index");
         }
     }
