@@ -6,13 +6,14 @@ namespace Calculator.Data
     {
         public DbSet<DataInputVariant> DataInputVariants { get; set; }
 
-        public CalculatorContext(DbContextOptions<CalculatorContext> options) : base(options)
+        public CalculatorContext(DbContextOptions<CalculatorContext> options)
+            : base(options)
         {
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            //OnModelCreating(modelBuilder);
+            // OnModelCreating(modelBuilder);
         }
     }
 }
