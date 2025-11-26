@@ -1,0 +1,17 @@
+{
+	"ulid": "01KAZATBMNH5BG292DD1FV9EZE",
+	"minTime": 1764122400000,
+	"maxTime": 1764129600000,
+	"stats": {
+		"numSamples": 33671,
+		"numSeries": 137,
+		"numChunks": 282
+	},
+	"compaction": {
+		"level": 1,
+		"sources": [
+			"01KAZATBMNH5BG292DD1FV9EZE"
+		]
+	},
+	"version": 1
+}
