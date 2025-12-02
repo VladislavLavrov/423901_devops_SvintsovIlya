@@ -75,10 +75,15 @@ WSGI_APPLICATION = 'steel_predict_project.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'steel_db',
+        'USER': 'steel_user',
+        'PASSWORD': 'steel_pass',
+        'HOST': 'db',
+        'PORT': 5432,
     }
 }
+
 
 
 # Password validation
