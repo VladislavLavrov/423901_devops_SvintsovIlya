@@ -10,7 +10,7 @@ services:
       POSTGRES_PASSWORD: steel_pass
       POSTGRES_DB: steel_db
     ports:
-      - "5432:5432"
+      - "5054:5432"
     volumes:
       - postgres_data:/var/lib/postgresql/data
 
