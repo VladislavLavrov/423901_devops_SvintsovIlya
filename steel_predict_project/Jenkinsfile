@@ -2,41 +2,34 @@ pipeline {
     agent any
 
     stages {
-
         stage('Checkout') {
             steps {
-                git branch: 'Dz',
-                    url: 'https://github.com/VladislavLavrov/423901_devops_SvintsovIlya.git'
+                git branch: 'Dz', url: 'https://github.com/VladislavLavrov/423901_devops_SvintsovIlya.git'
             }
         }
 
         stage('Build Docker Image') {
             steps {
-                sh 'docker build -t steel_app .'
+                sh 'docker build -t steel_app steel_predict_project'
             }
         }
 
         stage('Compose Up') {
             steps {
-                sh 'docker compose down || true'
-                sh 'docker compose up --build -d'
+                sh 'docker-compose -f steel_predict_project/docker-compose.yml up -d --build'
             }
         }
 
         stage('Run Migrations') {
             steps {
-                sh 'docker compose exec web python manage.py migrate --noinput'
+                sh 'docker-compose -f steel_predict_project/docker-compose.yml run web python manage.py migrate'
             }
         }
-
     }
 
     post {
-        success {
-            echo 'Deployment successful!'
-        }
         failure {
-            echo 'Build failed'
+            echo "Build failed"
         }
     }
 }

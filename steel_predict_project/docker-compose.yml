@@ -13,17 +13,23 @@ services:
       - "5054:5432"
     volumes:
       - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U steel_user"]
+      interval: 5s
+      timeout: 3s
+      retries: 8
 
   web:
     build: .
     container_name: steel_app
-    command: python manage.py runserver 0.0.0.0:8000
+    command: sh -c "python manage.py migrate && python manage.py runserver 0.0.0.0:8000"
     volumes:
       - .:/app
     ports:
       - "8000:8000"
     depends_on:
-      - db
+      db:
+        condition: service_healthy
 
   jenkins:
     image: jenkins/jenkins:lts
@@ -31,7 +37,7 @@ services:
     user: root
     restart: always
     ports:
-      - "5014:8080"
+      - "8080:8080"
       - "50000:50000"
     volumes:
       - jenkins_home:/var/jenkins_home
