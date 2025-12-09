@@ -10,19 +10,25 @@ pipeline {
 
         stage('Build Docker Image') {
             steps {
-                sh 'docker build -t steel_app steel_predict_project'
+                dir('steel_predict_project') {
+                    sh 'docker build -t steel_app .'
+                }
             }
         }
 
         stage('Compose Up') {
             steps {
-                sh 'docker compose -f steel_predict_project/docker-compose.yml up -d --build'
+                dir('steel_predict_project') {
+                    sh 'docker compose up -d --build'
+                }
             }
         }
 
         stage('Run Migrations') {
             steps {
-                sh 'docker compose -f steel_predict_project/docker-compose.yml run web python manage.py migrate'
+                dir('steel_predict_project') {
+                    sh 'docker compose run web python manage.py migrate'
+                }
             }
         }
     }
