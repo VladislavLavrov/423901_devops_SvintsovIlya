@@ -16,13 +16,13 @@ pipeline {
 
         stage('Compose Up') {
             steps {
-                sh 'docker-compose -f steel_predict_project/docker-compose.yml up -d --build'
+                sh 'docker compose -f steel_predict_project/docker-compose.yml up -d --build'
             }
         }
 
         stage('Run Migrations') {
             steps {
-                sh 'docker-compose -f steel_predict_project/docker-compose.yml run web python manage.py migrate'
+                sh 'docker compose -f steel_predict_project/docker-compose.yml run web python manage.py migrate'
             }
         }
     }
