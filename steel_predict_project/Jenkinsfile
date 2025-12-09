@@ -1,0 +1,42 @@
+pipeline {
+    agent any
+
+    stages {
+
+        stage('Checkout') {
+            steps {
+                git branch: 'Dz',
+                    url: 'https://github.com/VladislavLavrov/423901_devops_SvintsovIlya.git'
+            }
+        }
+
+        stage('Build Docker Image') {
+            steps {
+                sh 'docker build -t steel_app .'
+            }
+        }
+
+        stage('Compose Up') {
+            steps {
+                sh 'docker compose down || true'
+                sh 'docker compose up --build -d'
+            }
+        }
+
+        stage('Run Migrations') {
+            steps {
+                sh 'docker compose exec web python manage.py migrate --noinput'
+            }
+        }
+
+    }
+
+    post {
+        success {
+            echo 'Deployment successful!'
+        }
+        failure {
+            echo 'Build failed'
+        }
+    }
+}
